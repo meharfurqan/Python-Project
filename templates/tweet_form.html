@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  tweet here!
+{% endblock %}
+
+{% block content %}
+  <h1 class="text-center">HELLo Django</h1>
+
+  <h2 class="">
+    {% if form.instance.pk %}
+      Edit Tweet
+    {% else %}
+      Create Tweet
+    {% endif %}
+    {% comment %} enctype use because form is accepting images as well {% endcomment %}
+    <form class="form" method="post" enctype="multipart/form-data">
+
+      {% csrf_token %}
+
+      {{ form.as_p }}
+      <button class="btn btn-warning" type="submit">Submit</button>
+    </form>
+    <a href="{% url 'tweet_list' %}">Back to List</a>
+  </h2>
+{% endblock %}
